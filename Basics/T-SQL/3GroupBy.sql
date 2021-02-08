@@ -16,7 +16,8 @@ SELECT ProductID,OrderQty FROM SalesLT.SalesOrderDetail  GROUP BY ProductID;
 --Column 'SalesLT.SalesOrderDetail.OrderQty' is invalid in the select list
 --because it is not contained in either an aggregate function or the GROUP BY clause. 
 SELECT ProductID,OrderQty FROM SalesLT.SalesOrderDetail GROUP BY ProductID,OrderQty ;
-
+----While all aggregate functions could be used without the GROUP BY clause
+SELECT SUM(OrderQty) FROM SalesLT.SalesOrderDetail;
 SELECT ProductID,SUM(OrderQty) TotalOrderQty FROM SalesLT.SalesOrderDetail  GROUP BY ProductID;
 
 SELECT ProductID,OrderQty FROM SalesLT.SalesOrderDetail where ProductID = 707;
