@@ -106,5 +106,14 @@ SalesLT.SalesOrderHeader AS SAH
 ON C.CustomerID=SAH.CustomerID
 ORDER BY TotalDue DESC;
 
---self join
+
 --cross join
+--syntax
+/**
+SELECT
+	select_list
+FROM
+	T1
+CROSS JOIN T2;
+**/
+--cat
