@@ -23,7 +23,7 @@ use AdventureWorksLT2012;
 SELECT * FROM SalesLT.Customer;
 SELECT * FROM SalesLT.CustomerAddress;
 
-SELECT CustomerID,FirstName,LastName,CompanyName,AddressType 
+SELECT  CustomerID,FirstName,LastName,CompanyName,AddressType 
 FROM SalesLT.Customer
 JOIN
 SalesLT.CustomerAddress 
@@ -34,7 +34,7 @@ ON SalesLT.Customer.CustomerID=SalesLT.CustomerAddress.CustomerID;
 --Most of the cases we will use Table aliasing in joins
 SELECT C.CustomerID,FirstName,LastName,CompanyName,AddressType 
 FROM SalesLT.Customer  AS C
-JOIN
+ JOIN
 SalesLT.CustomerAddress AS CA
 ON C.CustomerID=CA.CustomerID;
 --Its better to mention the table name in joins even when the cols are present in only one table
@@ -60,6 +60,8 @@ INNER JOIN
 SalesLT.SalesOrderHeader AS SAH
 ON C.CustomerID=SAH.CustomerID
 ORDER BY TotalDue DESC;
+
+select TotalDue from SalesOrderHeader
 
 -- Left outer join returns all the records from the left side of the table and  the records on the  matches from the right side table
 -- if there is no match then it will return null
@@ -108,6 +110,11 @@ ORDER BY TotalDue DESC;
 
 
 --cross join
+-- cross join returns a Cartesian product of rows from both tables.
+--The CROSS JOIN gets a row from the first table (T1) and then creates a new row for every row in the second table (T2). 
+--It then does the same for the next row for in the first table (T1) and so on.
+
+
 --syntax
 /**
 SELECT
@@ -116,4 +123,34 @@ FROM
 	T1
 CROSS JOIN T2;
 **/
---cat
+
+
+SELECT distinct color from SalesLT.Product;
+
+SELECT distinct Name  FROM SalesLT.ProductModel;
+
+SELECT distinct P.Color ,PM.NAME FROM
+SalesLT.Product P CROSS JOIN SalesLT.ProductModel PM;
+
+--without Null
+SELECT distinct P.Color ,PM.NAME FROM
+SalesLT.Product P CROSS JOIN SalesLT.ProductModel PM
+WHERE P.Color IS NOT NULL;
+
+--self join
+
+--A self join allows you to join a table to itself. It is useful for querying hierarchical data or comparing rows within the same table.
+--we can do any type of join using self join
+SELECT distinct P.Color FROM SalesLT.Product P;
+--inner
+SELECT distinct P.Color ,PM.Color FROM
+SalesLT.Product P Inner JOIN SalesLT.Product PM on P.ProductID=PM.ProductID;
+--LEFT OUTER
+SELECT distinct P.Color ,PM.Color FROM
+SalesLT.Product P LEFT JOIN SalesLT.Product PM on P.ProductID=PM.ProductID;
+--RIGHT OUTER
+SELECT distinct P.Color ,PM.Color FROM
+SalesLT.Product P RIGHT JOIN SalesLT.Product PM on P.ProductID=PM.ProductID;
+--cross
+SELECT distinct P.Color ,PM.Color FROM
+SalesLT.Product P CROSS JOIN SalesLT.Product PM;
