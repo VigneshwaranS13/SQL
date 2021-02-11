@@ -124,10 +124,10 @@ FROM
 CROSS JOIN T2;
 **/
 
+SELECT color FROM  SalesLT.Product;
+SELECT distinct color from SalesLT.Product;--10
 
-SELECT distinct color from SalesLT.Product;
-
-SELECT distinct Name  FROM SalesLT.ProductModel;
+SELECT distinct Name  FROM SalesLT.ProductModel;--128
 
 SELECT distinct P.Color ,PM.NAME FROM
 SalesLT.Product P CROSS JOIN SalesLT.ProductModel PM;
